@@ -14,16 +14,21 @@ import type {
   Therapist,
 } from "@/types/salon";
 
-// Unsplash実画像URL。差し替え時はこの定数群のみ編集すればOK。
-// w=パラメータでサイズ最適化を依頼。
+// 画像URL一覧。差し替え時はこの定数群のみ編集すればOK。
+// ビフォーアフター（35歳・42歳）は実写真をリポジトリ管理 (public/before-after/)。
+// それ以外はUnsplashのプレースホルダーを使用（w=パラメータでサイズ最適化）。
+const LOCAL_BA = {
+  before35: "/before-after/35-before.jpg",
+  after35: "/before-after/35-after.jpg",
+  before42: "/before-after/42-before.jpg",
+  after42: "/before-after/42-after.jpg",
+} as const;
+
 const UNSPLASH = {
   hero: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1600&q=80",
+  // 38歳症例（フェイスラインのたるみ）は実写真未提供のためUnsplashで代用
   beforeA: "https://images.unsplash.com/photo-1614108223721-058c0fde9610?auto=format&fit=crop&w=600&q=80",
   afterA: "https://images.unsplash.com/photo-1616394158624-a2ba9cfe2994?auto=format&fit=crop&w=600&q=80",
-  beforeB: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=600&q=80",
-  afterB: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80",
-  beforeC: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80",
-  afterC: "https://images.unsplash.com/photo-1571907483086-3c25d80a228e?auto=format&fit=crop&w=600&q=80",
   reviewer1: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
   reviewer2: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
   reviewer3: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
@@ -109,18 +114,18 @@ export const BEFORE_AFTER_CASES: BeforeAfterCase[] = [
   {
     id: "ba2",
     ageRange: "42歳・女性",
-    concern: "くすみ・毛穴",
+    concern: "くすみ・シミ",
     treatment: "ハーブピーリングコース 75分 × 1回",
-    before: buildImage(UNSPLASH.beforeB, "施術前の肌色", portraitDimensions),
-    after: buildImage(UNSPLASH.afterB, "施術後の透明感ある肌", portraitDimensions),
+    before: buildImage(LOCAL_BA.before42, "42歳女性の施術前の肌（くすみ・シミが目立つ状態）", portraitDimensions),
+    after: buildImage(LOCAL_BA.after42, "42歳女性の施術後の肌（透明感とハリが戻った状態）", portraitDimensions),
   },
   {
     id: "ba3",
     ageRange: "35歳・女性",
-    concern: "目元の小じわ・むくみ",
-    treatment: "プレミアムエイジングケア 90分 × 1回",
-    before: buildImage(UNSPLASH.beforeC, "施術前の目元", portraitDimensions),
-    after: buildImage(UNSPLASH.afterC, "施術後のハリのある目元", portraitDimensions),
+    concern: "毛穴・肌荒れ",
+    treatment: "ハーブピーリング＋小顔矯正 90分 × 1回",
+    before: buildImage(LOCAL_BA.before35, "35歳女性の施術前の肌（毛穴・赤み・肌荒れが見られる状態）", portraitDimensions),
+    after: buildImage(LOCAL_BA.after35, "35歳女性の施術後の肌（毛穴が引き締まり透明感のある状態）", portraitDimensions),
   },
 ];
 
