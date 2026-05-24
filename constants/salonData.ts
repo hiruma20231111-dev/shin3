@@ -15,20 +15,19 @@ import type {
 } from "@/types/salon";
 
 // 画像URL一覧。差し替え時はこの定数群のみ編集すればOK。
-// ビフォーアフター（35歳・42歳）は実写真をリポジトリ管理 (public/before-after/)。
-// それ以外はUnsplashのプレースホルダーを使用（w=パラメータでサイズ最適化）。
+// ビフォーアフターは全症例とも実写真をリポジトリ管理 (public/before-after/)。
+// レビュアー写真・セラピスト写真はUnsplashのプレースホルダーを使用。
 const LOCAL_BA = {
   before35: "/before-after/35-before.jpg",
   after35: "/before-after/35-after.jpg",
+  before38: "/before-after/38-before.jpg",
+  after38: "/before-after/38-after.jpg",
   before42: "/before-after/42-before.jpg",
   after42: "/before-after/42-after.jpg",
 } as const;
 
 const UNSPLASH = {
   hero: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1600&q=80",
-  // 38歳症例（フェイスラインのたるみ）は実写真未提供のためUnsplashで代用
-  beforeA: "https://images.unsplash.com/photo-1614108223721-058c0fde9610?auto=format&fit=crop&w=600&q=80",
-  afterA: "https://images.unsplash.com/photo-1616394158624-a2ba9cfe2994?auto=format&fit=crop&w=600&q=80",
   reviewer1: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
   reviewer2: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
   reviewer3: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
@@ -108,8 +107,8 @@ export const BEFORE_AFTER_CASES: BeforeAfterCase[] = [
     ageRange: "38歳・女性",
     concern: "フェイスラインのたるみ",
     treatment: "小顔矯正コース 60分 × 1回",
-    before: buildImage(UNSPLASH.beforeA, "施術前の頬まわり", portraitDimensions),
-    after: buildImage(UNSPLASH.afterA, "施術後の引き締まったフェイスライン", portraitDimensions),
+    before: buildImage(LOCAL_BA.before38, "38歳女性の施術前の頬まわり（フェイスラインのもたつき）", portraitDimensions),
+    after: buildImage(LOCAL_BA.after38, "38歳女性の施術後（引き締まったフェイスライン）", portraitDimensions),
   },
   {
     id: "ba2",
