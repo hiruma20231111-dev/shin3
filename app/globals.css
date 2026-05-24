@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.lumiere.bg");
+  color: theme("colors.lumiere.text");
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-color: theme("colors.lumiere.bg-dark");
+  color: theme("colors.lumiere.text-dark");
+}
+
+/* スマホ固定CTAバー表示時、本文末尾が隠れないよう余白を確保 */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 72px;
+  }
+}
+
+/* スクロールスナップ用ユーティリティ。
+   外部ライブラリ不使用で横スクロールスライダーを実現するため。 */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-x > * {
+  scroll-snap-align: center;
+}
+
+/* スクロールバー非表示（スライダー内） */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
