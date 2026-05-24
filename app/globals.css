@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-}
-
-.dark {
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
 html {
@@ -22,9 +18,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.dark body {
-  background-color: theme("colors.lumiere.bg-dark");
-  color: theme("colors.lumiere.text-dark");
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: theme("colors.lumiere.bg-dark");
+    color: theme("colors.lumiere.text-dark");
+  }
 }
 
 /* スマホ固定CTAバー表示時、本文末尾が隠れないよう余白を確保 */

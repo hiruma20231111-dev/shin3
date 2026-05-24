@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
+  // OSのカラースキーム設定（prefers-color-scheme）に従って自動切替。
+  // JS不要・FOUC無しで動作する。
+  darkMode: "media",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
